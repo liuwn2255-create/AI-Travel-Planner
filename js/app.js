@@ -65,6 +65,7 @@ form.addEventListener("submit", async (event) => {
     renderTrip(data);
 
     result.classList.remove("hidden");
+
     result.scrollIntoView({
       behavior: "smooth",
       block: "start"
@@ -87,7 +88,9 @@ form.addEventListener("submit", async (event) => {
   }
 });
 
+
 function renderTrip(trip) {
+
   summary.innerHTML = `
     <div class="summary-title">
       ✈️ ${escapeHtml(trip.title || "AI 旅行計畫")}
@@ -109,12 +112,16 @@ function renderTrip(trip) {
   daysList.innerHTML = "";
 
   (trip.days || []).forEach((day, index) => {
+
     const card = document.createElement("article");
 
     card.className = "day-card";
 
     card.innerHTML = `
-      <div class="day-number">DAY ${index + 1}</div>
+
+      <div class="day-number">
+        DAY ${index + 1}
+      </div>
 
       <h3>
         ${escapeHtml(day.title || "今日行程")}
@@ -124,18 +131,106 @@ function renderTrip(trip) {
         ${escapeHtml(day.summary || "")}
       </p>
 
-      <ul>
-        ${(day.activities || [])
-          .map(x => `<li>${escapeHtml(x)}</li>`)
-          .join("")}
-      </ul>
+
+      <!-- 景點行程 -->
+
+      <div class="trip-section">
+
+        <h4>📍 景點行程</h4>
+
+        <ul>
+          ${(day.activities || [])
+            .map(x => `<li>${escapeHtml(x)}</li>`)
+            .join("")}
+        </ul>
+
+      </div>
+
+
+      <!-- 時間安排 -->
+
+      <div class="trip-section">
+
+        <h4>⏰ 時間安排</h4>
+
+        <ul>
+          ${(day.schedule || [])
+            .map(x => `<li>${escapeHtml(x)}</li>`)
+            .join("")}
+        </ul>
+
+      </div>
+
+
+      <!-- 交通方式 -->
+
+      <div class="trip-section">
+
+        <h4>🚆 交通方式</h4>
+
+        <ul>
+          ${(day.transport || [])
+            .map(x => `<li>${escapeHtml(x)}</li>`)
+            .join("")}
+        </ul>
+
+      </div>
+
+
+      <!-- 餐飲建議 -->
+
+      <div class="trip-section">
+
+        <h4>🍜 餐飲建議</h4>
+
+        <ul>
+          ${(day.meals || [])
+            .map(x => `<li>${escapeHtml(x)}</li>`)
+            .join("")}
+        </ul>
+
+      </div>
+
+
+      <!-- 預估花費 -->
+
+      <div class="trip-section">
+
+        <h4>💰 今日預估花費</h4>
+
+        <p>
+          ${escapeHtml(
+            day.budget || "請依實際消費情況估算。"
+          )}
+        </p>
+
+      </div>
+
+
+      <!-- 旅遊提醒 -->
+
+      <div class="trip-section">
+
+        <h4>💡 旅遊提醒</h4>
+
+        <ul>
+          ${(day.tips || [])
+            .map(x => `<li>${escapeHtml(x)}</li>`)
+            .join("")}
+        </ul>
+
+      </div>
+
     `;
 
     daysList.appendChild(card);
+
   });
 }
 
+
 function escapeHtml(value) {
+
   return String(value ?? "").replace(
     /[&<>"']/g,
     c => ({
@@ -146,4 +241,5 @@ function escapeHtml(value) {
       "'": "&#039;"
     }[c])
   );
+
 }
