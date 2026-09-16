@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI 旅遊管家</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="#home">✈️ AI 旅遊管家</a>
+  <nav><a href="#planner">開始規劃</a><a href="#trips">我的旅程</a></nav>
+</header>
+<main>
+<section id="home" class="hero">
+  <div class="hero-copy">
+    <span class="eyebrow">SMART TRAVEL PLANNER</span>
+    <h1>下一趟旅行，<br><span>交給 AI 幫你規劃。</span></h1>
+    <p>輸入目的地、日期與喜好，讓 AI 幫你整理成一份清楚、輕鬆、可以繼續修改的旅行計畫。</p>
+    <a class="btn btn-primary" href="#planner">✨ 開始規劃旅行</a>
+  </div>
+  <div class="hero-card">
+    <div class="mini-map">🗺️</div>
+    <div><strong>AI 旅行規劃</strong><p>景點・美食・節奏・行程</p></div>
+  </div>
+</section>
+
+<section id="planner" class="section">
+  <div class="section-heading">
+    <span class="eyebrow">STEP 1</span>
+    <h2>告訴我你的旅行想法</h2>
+    <p>填好條件後，按下按鈕讓 AI 開始規劃。</p>
+  </div>
+  <form id="plannerForm" class="planner-card">
+    <div class="form-grid">
+      <label>想去哪裡？<input id="destination" required placeholder="例如：日本東京"></label>
+      <label>旅行天數<select id="days"><option value="3">3 天 2 夜</option><option value="5" selected>5 天 4 夜</option><option value="7">7 天 6 夜</option><option value="10">10 天 9 夜</option></select></label>
+      <label>出發日期<input id="date" type="date"></label>
+      <label>同行人數<select id="people"><option>1 人</option><option selected>2 人</option><option>3 人</option><option>4 人</option><option>5 人以上</option></select></label>
+      <label>預算<select id="budget"><option>1 萬元以下</option><option selected>1～3 萬元</option><option>3～5 萬元</option><option>5～10 萬元</option><option>10 萬元以上</option></select></label>
+      <label>旅行步調<select id="pace"><option selected>輕鬆慢遊</option><option>景點與休息平衡</option><option>豐富探索</option></select></label>
+    </div>
+    <label>最想做什麼？<input id="interest" placeholder="例如：美食、自然風景、購物、歷史文化"></label>
+    <button id="submitBtn" class="btn btn-primary full" type="submit">✨ 請 AI 幫我規劃</button>
+    <p id="status" class="status" aria-live="polite"></p>
+  </form>
+</section>
+
+<section id="result" class="section result-section hidden">
+  <div class="section-heading"><span class="eyebrow">STEP 2</span><h2>AI 為你規劃的旅程</h2><p>這份行程可以再繼續加入修改、地圖、天氣等功能。</p></div>
+  <div id="tripSummary" class="summary-card"></div>
+  <div id="daysList" class="days-list"></div>
+</section>
+
+<section id="trips" class="section trips-section">
+  <div class="section-heading"><span class="eyebrow">MY TRIPS</span><h2>我的旅程</h2><p>之後會在這裡保存與管理你的旅行計畫。</p></div>
+  <div class="empty-trip"><div class="empty-icon">🧳</div><h3>目前還沒有保存的旅程</h3><p>這個功能留到下一階段。</p></div>
+</section>
+</main>
+<footer><p>✈️ AI 旅遊管家 · v2 AI 核心版</p></footer>
+<script src="js/app.js"></script>
+</body>
+</html>
