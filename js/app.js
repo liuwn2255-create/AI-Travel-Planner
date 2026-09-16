@@ -4,8 +4,7 @@
   - Set this to your deployed Cloudflare Worker URL, e.g.
     https://ai-travel-planner-api.example.workers.dev/api/plan
 */
-const API_URL = "https://weathered-dew-b2c0.liuwn2255.workers.dev/api/plan";
-
+const API_URL = "https://divine-shape-943e.liuwn2255.workers.dev/api/plan";
 const form=document.getElementById("plannerForm");
 const result=document.getElementById("result");
 const summary=document.getElementById("tripSummary");
