@@ -1,247 +1,203 @@
 *{box-sizing:border-box}:root{--bg:#f5f7fb;--card:#fff;--text:#172033;--muted:#687386;--line:#e5e9f0;--accent:#315efb;--accent-soft:#eef2ff;--shadow:0 12px 35px rgba(25,40,70,.08)}html{scroll-behavior:smooth}body{margin:0;font-family:system-ui,-apple-system,"Segoe UI","Noto Sans TC",sans-serif;background:var(--bg);color:var(--text);line-height:1.6}a{text-decoration:none;color:inherit}.topbar{height:72px;background:rgba(255,255,255,.94);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 max(22px,calc((100% - 1120px)/2));position:sticky;top:0;z-index:10;backdrop-filter:blur(12px)}.brand{font-size:20px;font-weight:800}.topbar nav{display:flex;gap:24px;color:var(--muted);font-size:14px}.hero{min-height:570px;display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:50px;padding:80px 30px;max-width:1120px;margin:auto}.eyebrow{display:inline-block;font-size:12px;font-weight:800;letter-spacing:1.8px;color:var(--accent);margin-bottom:8px}h1{font-size:clamp(42px,6vw,68px);line-height:1.1;margin:0 0 22px;letter-spacing:-2px}h1 span{color:var(--accent)}h2{font-size:34px;line-height:1.2;margin:0 0 10px}p{color:var(--muted);margin:0}.hero-copy>p{max-width:590px;font-size:18px;margin-bottom:30px}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:0 22px;border-radius:14px;font-weight:800;border:0;cursor:pointer;font-size:15px}.btn-primary{background:var(--accent);color:white;box-shadow:0 8px 18px rgba(49,94,251,.22)}.hero-card{min-height:360px;border-radius:30px;background:linear-gradient(145deg,#dfe8ff,#fff);box-shadow:var(--shadow);display:flex;flex-direction:column;justify-content:flex-end;padding:28px;overflow:hidden;position:relative}.mini-map{font-size:130px;position:absolute;top:65px;left:50%;transform:translateX(-50%)}.hero-card strong{font-size:20px}.section{max-width:1120px;margin:auto;padding:75px 30px}.section-heading{margin-bottom:28px}.planner-card,.summary-card,.empty-trip{background:var(--card);border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow);padding:28px}.form-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-bottom:18px}label{font-size:14px;font-weight:700;display:block}input,select{display:block;width:100%;margin-top:7px;min-height:50px;border:1px solid var(--line);border-radius:12px;padding:0 14px;background:#fff;color:var(--text);font-size:16px;outline:none}input:focus,select:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}.full{width:100%;margin-top:22px}.status{min-height:24px;text-align:center;padding-top:12px;font-size:14px}.hidden{display:none}.summary-card{margin-bottom:18px;background:linear-gradient(135deg,#fff,#f5f7ff)}.summary-title{font-size:25px;font-weight:800}.summary-meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}.tag{background:var(--accent-soft);color:var(--accent);padding:6px 10px;border-radius:999px;font-size:13px;font-weight:700}.days-list{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.day-card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px}.day-number{font-size:12px;font-weight:900;color:var(--accent);letter-spacing:1px}.day-card h3{margin:4px 0 8px;font-size:20px}.day-card ul{padding-left:20px;color:var(--muted)}.trips-section{padding-top:20px}.empty-trip{text-align:center;padding:65px 25px}.empty-icon{font-size:55px}.empty-trip h3{margin:0 0 5px;font-size:22px}footer{text-align:center;padding:40px 20px;border-top:1px solid var(--line);font-size:13px}@media(max-width:760px){.topbar{padding:0 18px}.topbar nav{gap:12px}.brand{font-size:17px}.hero{grid-template-columns:1fr;padding:55px 20px;min-height:auto;gap:35px}.hero-card{min-height:290px}.section{padding:55px 20px}h2{font-size:29px}.form-grid,.days-list{grid-template-columns:1fr}.planner-card,.summary-card,.empty-trip{padding:20px}}
 
-/* ===== AI 旅遊行程結果美化 ===== */
+/* ===== AI 旅遊規劃器｜每日行程卡片升級版 ===== */
 
-.summary-card {
-  position: relative;
-  overflow: hidden;
-  padding: 30px;
-  border-radius: 26px;
-  background: linear-gradient(135deg, #ffffff 0%, #f4f7ff 100%);
-  border: 1px solid #dfe5f2;
+.result-section .section-heading{
+  margin-bottom:24px;
 }
 
-.summary-card::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 6px;
-  background: var(--accent);
+.result-section .section-heading h2{
+  letter-spacing:-.5px;
 }
 
-.summary-title {
-  font-size: clamp(24px, 4vw, 30px);
-  line-height: 1.3;
-  color: var(--text);
+.summary-card{
+  position:relative;
+  overflow:hidden;
+  padding:30px 30px 28px;
+  border-radius:26px;
+  background:linear-gradient(135deg,#ffffff 0%,#f5f8ff 100%);
+  border:1px solid #dfe6f3;
+  box-shadow:0 14px 38px rgba(25,40,70,.08);
 }
 
-.summary-card p {
-  font-size: 15px;
-  line-height: 1.8;
+.summary-card::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:0;
+  bottom:0;
+  width:6px;
+  background:var(--accent);
 }
 
-.days-list {
-  align-items: start;
+.summary-title{
+  font-size:clamp(24px,4vw,31px);
+  line-height:1.3;
+  font-weight:900;
+  padding-left:4px;
 }
 
-.day-card {
-  position: relative;
-  padding: 25px;
-  border-radius: 22px;
-  transition: transform .2s ease, box-shadow .2s ease;
+.summary-card>p{
+  max-width:900px;
+  margin-top:9px !important;
+  font-size:15px;
+  line-height:1.8;
 }
 
-.day-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 16px 38px rgba(25,40,70,.12);
+.summary-meta{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:16px;
 }
 
-.day-number {
-  display: inline-flex;
-  align-items: center;
-  min-height: 28px;
-  padding: 0 10px;
-  border-radius: 999px;
-  background: var(--accent-soft);
+.tag{
+  border:1px solid #d9e1ff;
+  box-shadow:0 3px 10px rgba(49,94,251,.06);
 }
 
-.day-card h3 {
-  font-size: 21px;
-  line-height: 1.35;
-  margin: 10px 0 8px;
+/* 每日行程：改成更像旅行 App 的卡片 */
+.days-list{
+  align-items:stretch;
+  gap:20px;
 }
 
-.day-card > p {
-  font-size: 14px;
-  line-height: 1.75;
-  padding-bottom: 12px;
-  border-bottom: 1px dashed var(--line);
+.day-card{
+  position:relative;
+  overflow:hidden;
+  padding:25px;
+  border:1px solid #dfe5ef;
+  border-radius:24px;
+  background:#fff;
+  box-shadow:0 10px 28px rgba(25,40,70,.07);
+  transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;
 }
 
-.trip-section {
-  margin-top: 16px;
-  padding: 15px 16px;
-  border-radius: 15px;
-  background: #f8faff;
-  border: 1px solid #edf0f7;
+.day-card::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:0;
+  width:100%;
+  height:4px;
+  background:linear-gradient(90deg,var(--accent),#8da6ff);
 }
 
-.trip-section h4 {
-  margin: 0 0 7px;
-  font-size: 15px;
-  color: var(--text);
+.day-card:hover{
+  transform:translateY(-3px);
+  box-shadow:0 17px 38px rgba(25,40,70,.12);
+  border-color:#cbd6f2;
 }
 
-.trip-section ul {
-  margin: 0;
-  padding-left: 21px;
+.day-number{
+  display:inline-flex;
+  align-items:center;
+  min-height:30px;
+  padding:0 11px;
+  border-radius:999px;
+  background:var(--accent-soft);
+  color:var(--accent);
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:1.2px;
 }
 
-.trip-section li {
-  margin: 5px 0;
-  font-size: 14px;
-  line-height: 1.65;
+.day-card h3{
+  margin:11px 0 7px;
+  font-size:22px;
+  line-height:1.35;
+  letter-spacing:-.3px;
 }
 
-.trip-section p {
-  font-size: 14px;
-  line-height: 1.65;
+.day-card>p{
+  font-size:14px;
+  line-height:1.75;
+  padding-bottom:14px;
+  border-bottom:1px dashed #dfe4ed;
 }
 
-@media (max-width:760px) {
-  .summary-card {
-    padding: 24px 20px;
+/* 每個資訊區塊 */
+.trip-section{
+  margin-top:15px;
+  padding:15px 16px;
+  border-radius:16px;
+  background:#f8faff;
+  border:1px solid #e9edf5;
+}
+
+.trip-section h4{
+  display:flex;
+  align-items:center;
+  gap:5px;
+  margin:0 0 8px;
+  font-size:15px;
+  line-height:1.4;
+  color:var(--text);
+}
+
+.trip-section ul{
+  margin:0;
+  padding-left:21px;
+}
+
+.trip-section li{
+  margin:5px 0;
+  font-size:14px;
+  line-height:1.65;
+  color:var(--muted);
+}
+
+.trip-section p{
+  font-size:14px;
+  line-height:1.65;
+}
+
+/* 讓不同類型的資訊更容易掃讀 */
+.day-card .trip-section:nth-of-type(1){
+  background:#f5f8ff;
+}
+
+.day-card .trip-section:nth-of-type(2){
+  background:#f8fbff;
+}
+
+.day-card .trip-section:nth-of-type(3){
+  background:#f7fbfa;
+}
+
+.day-card .trip-section:nth-of-type(4){
+  background:#fffaf5;
+}
+
+.day-card .trip-section:nth-of-type(5){
+  background:#fffaf1;
+}
+
+.day-card .trip-section:nth-of-type(6){
+  background:#f8f8ff;
+}
+
+@media(max-width:760px){
+  .summary-card{
+    padding:24px 20px;
   }
 
-  .day-card {
-    padding: 20px 17px;
+  .day-card{
+    padding:21px 17px;
+    border-radius:21px;
   }
 
-  .trip-section {
-    padding: 13px 14px;
+  .day-card h3{
+    font-size:20px;
+  }
+
+  .trip-section{
+    padding:13px 14px;
+    border-radius:14px;
   }
 
   .trip-section li,
-  .trip-section p {
-    font-size: 14px;
+  .trip-section p{
+    font-size:14px;
   }
 }
-
-
-/* ===== 收藏行程 ===== */
-.favorites-panel{margin:0 0 24px}
-.favorites-header{margin:0 0 14px}
-.favorites-header h3{margin:0;font-size:20px}
-.favorites-header p{margin:5px 0 0;color:var(--muted);font-size:14px}
-.favorites-list{display:grid;gap:14px}
-.favorite-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:var(--shadow)}
-.favorite-number{color:var(--accent);font-size:12px;font-weight:800;margin-bottom:5px}
-.favorite-card h4{margin:0 0 7px;font-size:18px}
-.favorite-card p{margin:0;color:var(--muted);line-height:1.7}
-.favorite-card-actions{display:flex;gap:10px;margin-top:14px}
-.favorite-card-actions .btn{flex:1}
-@media(max-width:600px){.favorite-card-actions{flex-direction:column}}
-
-
-/* ===== 我的收藏與下載行程 ===== */
-.trips-actions{display:flex;justify-content:center;margin:0 0 18px;gap:12px;flex-wrap:wrap}
-.trips-actions .btn{min-width:190px}
-@media(max-width:760px){.trips-actions .btn{width:100%}}
-@media(max-width:760px){.copy-trip-wrap{flex-direction:column;align-items:stretch}.copy-trip-wrap .btn{width:100%;min-width:0}}
-
-
-/* 每日地圖按鈕 */
-.day-map-btn {
-  min-height: 44px;
-  margin-top: 8px;
-  font-size: 14px;
-}
-
-.day-map-btn:hover {
-  background: var(--accent-soft);
-}
-
-
-/* 每日地圖交通方式 */
-.day-map-controls {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-top: 10px;
-  flex-wrap: wrap;
-}
-.day-map-mode {
-  min-height: 44px;
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  padding: 0 12px;
-  background: #fff;
-  color: var(--text);
-  font-size: 14px;
-}
-.day-map-btn { margin-top: 0; }
-@media(max-width:760px){
-  .day-map-controls { flex-direction: column; align-items: stretch; }
-  .day-map-mode, .day-map-btn { width: 100%; }
-}
-
-
-/* 每日地圖 V4：單一景點地圖按鈕 */
-.activity-map-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-}
-
-.activity-map-btn {
-  flex: 0 0 auto;
-  border: 1px solid var(--line, #e5e9f0);
-  background: #fff;
-  color: var(--accent, #315efb);
-  border-radius: 999px;
-  padding: 5px 10px;
-  font-size: 13px;
-  cursor: pointer;
-}
-
-.activity-map-btn:hover {
-  background: var(--accent-soft, #eef2ff);
-}
-
-/* 每日地圖 V5：目前位置出發按鈕 */
-.day-map-location-btn { margin-left: 8px; }
-@media (max-width: 640px) {
-  .day-map-location-btn { margin-left: 0; margin-top: 8px; }
-}
-
-/* 每日地圖 V6：單一景點導航按鈕 */
-.activity-map-item{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.activity-map-item > span{flex:1;min-width:180px}
-.activity-nav-btn,.activity-map-btn{border:1px solid #cfd8ef;background:#fff;color:var(--accent);border-radius:10px;padding:7px 10px;cursor:pointer;font-size:14px}
-.activity-nav-btn:hover,.activity-map-btn:hover{background:var(--accent-soft)}
-
-.day-map-share-btn { margin-left: 8px; }
-@media (max-width: 700px) {
-  .day-map-share-btn { margin-left: 0; margin-top: 8px; }
-  .day-map-location-btn { margin-left: 0; }
-}
-
-
-/* V8：列印行程按鈕 */
-#copyTripBtn, #downloadTripBtn, #printTripBtn { min-width: 180px; }
-@media (max-width: 760px) {
-  #copyTripBtn, #downloadTripBtn, #printTripBtn { width: 100%; min-width: 0; }
-}
-
-
-/* V10：旅遊天氣 */
-.weather-tools-wrap{display:flex;justify-content:center;margin:18px 0 10px}
-.weather-panel{margin:0 0 24px;padding:22px;border:1px solid var(--line);border-radius:20px;background:var(--card);box-shadow:var(--shadow)}
-.weather-header{display:flex;justify-content:space-between;gap:18px;align-items:flex-end;margin-bottom:16px}
-.weather-header h3{margin:4px 0 0;font-size:21px}
-.weather-header p{margin:0;color:var(--muted);font-size:13px}
-.weather-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:10px}
-.weather-day{padding:14px;border:1px solid var(--line);border-radius:16px;background:#f8faff;text-align:center}
-.weather-date{font-weight:700;font-size:14px}
-.weather-icon{font-size:30px;margin:8px 0 4px}
-.weather-desc{font-size:13px;font-weight:600}
-.weather-temp{margin-top:8px;font-size:14px;font-weight:700}
-.weather-rain{margin-top:5px;font-size:12px;color:var(--muted)}
-.weather-extra{margin-top:8px;font-size:12px;line-height:1.8;color:var(--muted)}
-.weather-sun{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
-.weather-note{margin-top:14px;padding:12px 14px;border-radius:14px;background:var(--accent-soft);font-size:13px;line-height:1.7;color:var(--text)}
-.weather-loading,.weather-error{padding:16px;border-radius:14px;background:var(--accent-soft);color:var(--text);line-height:1.7}
-@media(max-width:760px){.weather-header{display:block}.weather-header p{margin-top:8px}.weather-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
