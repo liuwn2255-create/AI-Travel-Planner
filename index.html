@@ -5,11 +5,109 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AI 旅遊管家</title>
   <link rel="stylesheet" href="css/style.css">
+
+<style>
+.ai-travel-mascot {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  width: 150px;
+  z-index: 1000;
+  pointer-events: none;
+}
+.ai-travel-mascot img {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 6px 14px rgba(0,0,0,.18));
+}
+@media (max-width: 600px) {
+  .ai-travel-mascot {
+    right: 10px;
+    bottom: 10px;
+    width: 105px;
+  }
+}
+</style>
+
+<style>
+/* ===== 首頁 Hero 視覺升級 ===== */
+.ai-hero-card{
+  min-height:470px;
+  padding:28px;
+  justify-content:flex-end;
+  background:radial-gradient(circle at 78% 18%,rgba(255,255,255,.95),transparent 24%),linear-gradient(145deg,#dce7ff 0%,#f7f9ff 55%,#fff 100%);
+  border:1px solid rgba(255,255,255,.9);
+}
+.hero-glow{
+  position:absolute;width:230px;height:230px;border-radius:50%;
+  background:rgba(255,255,255,.62);filter:blur(8px);
+  top:35px;left:50%;transform:translateX(-50%);
+}
+.hero-orbit{
+  position:absolute;border:1px solid rgba(49,94,251,.13);border-radius:50%;
+  left:50%;top:145px;transform:translate(-50%,-50%);
+}
+.orbit-one{width:300px;height:150px;transform:translate(-50%,-50%) rotate(-12deg)}
+.orbit-two{width:360px;height:190px;transform:translate(-50%,-50%) rotate(18deg)}
+.hero-travel-icon{
+  position:absolute;top:46px;right:48px;font-size:30px;
+  transform:rotate(-12deg);filter:drop-shadow(0 5px 10px rgba(25,40,70,.12));
+}
+.hero-mascot-wrap{
+  position:absolute;left:50%;top:42px;width:235px;
+  transform:translateX(-50%);z-index:2;
+  animation:mascotFloat 4s ease-in-out infinite;
+}
+.hero-mascot-wrap img{
+  display:block;width:100%;height:auto;
+  filter:drop-shadow(0 16px 24px rgba(25,40,70,.16));
+}
+.hero-card-copy{
+  position:relative;z-index:3;padding:20px;
+  border-radius:20px;background:rgba(255,255,255,.78);
+  border:1px solid rgba(255,255,255,.9);backdrop-filter:blur(12px);
+}
+.hero-card-copy span{
+  display:block;margin-bottom:5px;color:var(--accent);
+  font-size:11px;font-weight:900;letter-spacing:1.7px;
+}
+.hero-card-copy strong{display:block;font-size:22px;line-height:1.35}
+.hero-card-copy p{margin-top:6px;font-size:14px;line-height:1.7}
+@keyframes mascotFloat{
+  0%,100%{transform:translateX(-50%) translateY(0)}
+  50%{transform:translateX(-50%) translateY(-7px)}
+}
+@media(max-width:760px){
+  .ai-hero-card{min-height:390px;padding:18px}
+  .hero-mascot-wrap{top:28px;width:190px}
+  .hero-glow{width:190px;height:190px}
+  .hero-orbit{top:120px}
+  .orbit-one{width:250px;height:125px}
+  .orbit-two{width:290px;height:150px}
+  .hero-travel-icon{top:28px;right:25px;font-size:25px}
+  .hero-card-copy{padding:16px}
+  .hero-card-copy strong{font-size:19px}
+}
+</style>
+
+<style>
+.regenerate-wrap{display:flex;justify-content:center;margin:18px 0 24px}
+.btn-secondary{background:#fff;color:var(--accent);border:1px solid #cfd8ef;box-shadow:0 7px 18px rgba(25,40,70,.07)}
+.btn-secondary:hover{background:var(--accent-soft)}
+.btn-secondary:disabled{opacity:.65;cursor:not-allowed}
+@media(max-width:760px){.regenerate-wrap{margin:14px 0 20px}.btn-secondary{width:100%}}
+</style>
+
+<style>
+.copy-trip-wrap{display:flex;justify-content:center;margin:0 0 20px}
+.copy-trip-wrap .btn{min-width:190px}
+</style>
 </head>
 <body>
 <header class="topbar">
   <a class="brand" href="#home">✈️ AI 旅遊管家</a>
-  <nav><a href="#planner">開始規劃</a><a href="#trips">我的旅程</a></nav>
+  <nav><a href="#planner">開始規劃</a><a href="#trips">我的旅程</a><a id="topFavoritesBtn" href="#trips">📚 我的收藏</a></nav>
 </header>
 <main>
 <section id="home" class="hero">
@@ -19,10 +117,20 @@
     <p>輸入目的地、日期與喜好，讓 AI 幫你整理成一份清楚、輕鬆、可以繼續修改的旅行計畫。</p>
     <a class="btn btn-primary" href="#planner">✨ 開始規劃旅行</a>
   </div>
-  <div class="hero-card">
-    <div class="mini-map">🗺️</div>
-    <div><strong>AI 旅行規劃</strong><p>景點・美食・節奏・行程</p></div>
-  </div>
+  <div class="hero-card ai-hero-card">
+        <div class="hero-glow"></div>
+        <div class="hero-orbit orbit-one"></div>
+        <div class="hero-orbit orbit-two"></div>
+        <div class="hero-travel-icon">✈️</div>
+        <div class="hero-mascot-wrap">
+          <img src="images/ai_travel_mascot.png" alt="AI 旅遊管家">
+        </div>
+        <div class="hero-card-copy">
+          <span>AI TRAVEL ASSISTANT</span>
+          <strong>你的專屬 AI 旅遊管家</strong>
+          <p>從目的地、天數到旅行步調，幫你整理成容易執行的旅遊計畫。</p>
+        </div>
+      </div>
 </section>
 
 <section id="planner" class="section">
@@ -49,15 +157,42 @@
 <section id="result" class="section result-section hidden">
   <div class="section-heading"><span class="eyebrow">STEP 2</span><h2>AI 為你規劃的旅程</h2><p>這份行程可以再繼續加入修改、地圖、天氣等功能。</p></div>
   <div id="tripSummary" class="summary-card"></div>
-  <div id="daysList" class="days-list"></div>
+  <div class="regenerate-wrap">
+      <button id="regenerateBtn" class="btn btn-secondary" type="button">🔄 重新規劃一次</button>
+    </div>
+
+    <div class="copy-trip-wrap">
+      <button id="copyTripBtn" class="btn btn-secondary" type="button">📋 複製完整行程</button>
+      <button id="downloadTripBtn" class="btn btn-secondary" type="button">⬇️ 下載行程</button>
+      <button id="printTripBtn" class="btn btn-secondary" type="button">🖨️ 列印行程</button>
+      <button id="shareTripBtn" class="btn btn-secondary" type="button">📤 分享完整行程</button>
+    </div>
+
+    <div class="weather-tools-wrap">
+      <button id="weatherTripBtn" class="btn btn-secondary" type="button">🌤️ 查詢旅遊天氣</button>
+    </div>
+    <div id="weatherPanel" class="weather-panel hidden"></div>
+
+    <div class="copy-trip-wrap">
+      <button id="favoriteTripBtn" class="btn btn-secondary" type="button">⭐ 收藏這份行程</button>
+      <button id="favoritesListBtn" class="btn btn-secondary" type="button">📚 我的收藏</button>
+    </div>
+
+    <div id="daysList" class="days-list"></div>
 </section>
 
 <section id="trips" class="section trips-section">
-  <div class="section-heading"><span class="eyebrow">MY TRIPS</span><h2>我的旅程</h2><p>之後會在這裡保存與管理你的旅行計畫。</p></div>
-  <div class="empty-trip"><div class="empty-icon">🧳</div><h3>目前還沒有保存的旅程</h3><p>這個功能留到下一階段。</p></div>
+  <div class="section-heading"><span class="eyebrow">MY TRIPS</span><h2>我的旅程</h2><p>你收藏的旅行計畫會保存在這台裝置上。</p></div>
+  <div class="trips-actions"><button id="tripsFavoritesBtn" class="btn btn-secondary" type="button">📚 我的收藏</button></div>
+  <div id="tripsSummary" class="empty-trip"><div class="empty-icon">🧳</div><h3>目前還沒有收藏的旅程</h3><p>產生行程後，按「⭐ 收藏這份行程」即可保存。</p></div>
+  <div id="favoritesPanel" class="favorites-panel hidden"></div>
 </section>
 </main>
 <footer><p>✈️ AI 旅遊管家 · v2 AI 核心版</p></footer>
-<script src="js/app.js"></script>
+<div class="ai-travel-mascot" aria-label="AI 旅遊管家">
+  <img src="images/ai_travel_mascot.png" alt="AI 旅遊管家">
+</div>
+
+<script src="js/app.js?v=10.2"></script>
 </body>
 </html>
